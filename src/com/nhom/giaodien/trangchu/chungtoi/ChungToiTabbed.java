@@ -24,7 +24,7 @@ public class ChungToiTabbed extends JPanel implements ICommon{
 		txtrNhmKS.setFont(new Font("Courier New", Font.ITALIC, 25));
 		txtrNhmKS.setForeground(new Color(0, 0, 139));
 		txtrNhmKS.setBackground(SystemColor.control);
-		txtrNhmKS.setText("Nhóm Kỹ sư Văn Bằng 2 - CNTT - ĐHBKHN\r\n\r\n1. Nguyễn Đức Thành\r\n2. Nguyễn Thị Huyền Trang\r\n3. Quang Vinh\r\n4. Lê Ngọc Thành Vinh\r\n");
+		txtrNhmKS.setText("Nhóm Kỹ sư Văn Bằng 2 - CNTT - ĐHBKHN\r\n\r\n1. Nguyễn Đức Thành\r\n2. Nguyễn Thị Huyền Trang\r\n3. Nguyễn Quang Vinh\r\n4. Lê Ngọc Thành Vinh\r\n");
 		txtrNhmKS.setBounds(123, 70, 827, 423);
 		add(txtrNhmKS);
 		init();

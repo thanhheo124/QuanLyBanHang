@@ -22,6 +22,7 @@ import com.nhom.interfacegiaodien.ICommon;
 import com.nhom.models.SanPhamInforChi;
 import com.nhom.models.SanPhamInforThu;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 public class DoanhThuTabbed extends JPanel implements ICommon, ActionListener {
 	/**
@@ -246,14 +247,21 @@ public class DoanhThuTabbed extends JPanel implements ICommon, ActionListener {
 				labelDoanhThuThang.setText(thuNhap + "");
 			}
 			break;
-		case ACTION_XUATFILECHI:
-			int anhVinh = 0;
-			// anh Xuat file bằng cách lấy list chi nhé
-			break;
+//		case ACTION_XUATFILECHI:
+//                        ArrayList<Integer> listPhieuNhap = controllerDoanhThu.getListPhieuNhap(dateTimKiem);
+//                        ArrayList<SanPhamInforChi> listSPInforChi = controllerDoanhThu.getListSPChi(listPhieuNhap);
+//                        if(controllerDoanhThu.xuatFileChi(listSPInforChi, thang, year)){
+//                            JOptionPane.showMessageDialog(null, "Đã xuất file!" , "Thông báo", 1);
+//                        }else JOptionPane.showMessageDialog(null, "Chưa xuất file!" , "Thông báo", 2);
+//			break;
 		case ACTION_XUATFILETHU:
-			int anhVinh1 = 0;
-			// anh Xuất file bằng cách lấy list Thu nhé!
-			// cả cái doanh Thu nữa text.
+			ArrayList<Integer> listPhieuNhap = controllerDoanhThu.getListPhieuNhap(dateTimKiem);
+                        ArrayList<SanPhamInforChi> listSPInforChi = controllerDoanhThu.getListSPChi(listPhieuNhap);
+                        ArrayList<Integer> listMaHoaDon = controllerDoanhThu.getListMaHoaDon(dateTimKiem);
+                        ArrayList<SanPhamInforThu> listSPInforThu = controllerDoanhThu.getListSPBan(listMaHoaDon);
+                        if(controllerDoanhThu.xuatFileDoanhThu(listSPInforChi,listSPInforThu, thang, year)){
+                            JOptionPane.showMessageDialog(null, "Đã xuất file!" , "Thông báo", 1);
+                        }else JOptionPane.showMessageDialog(null, "Chưa xuất file!" , "Thông báo", 2);
 			break;
 		default:
 			break;

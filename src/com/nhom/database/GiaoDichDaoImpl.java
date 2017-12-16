@@ -29,6 +29,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.nhom.models.DanhSachMuaHang;
 import com.nhom.models.KhachHang;
 import com.nhom.models.SanPham;
+import com.nhom.models.SanPhamInforChi;
 import com.nhom.models.SanPhamInforThu;
 
 public class GiaoDichDaoImpl extends ConectDataBase {
@@ -537,4 +538,278 @@ public class GiaoDichDaoImpl extends ConectDataBase {
 		}
 		return check;
 	}
+        
+//        public boolean xuatFileChi(ArrayList<SanPhamInforChi> listSPInforChi, int thang, int nam){
+//            boolean check = false;
+//            JFileChooser chooser = new JFileChooser();
+//		FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF file (.pdf)", "pdf");
+//		chooser.setFileFilter(filter);
+//		chooser.setDialogTitle("Chọn vị trí lưu file ");
+//		chooser.setMultiSelectionEnabled(false);
+//		chooser.setAcceptAllFileFilterUsed(false);
+//		if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+//			String Location = chooser.getSelectedFile().toString();
+//			if (Location.endsWith("pdf")) {
+//				try {
+//					Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
+//					PdfWriter.getInstance(doc, new FileOutputStream(Location));
+//					doc.open();
+//					BaseFont bf = BaseFont.createFont("arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+//					Paragraph tenCuaHang = new Paragraph("CỬA HÀNG BÁN GIÀY DÉP TVTV", new Font(bf, 16, Font.BOLD));
+//					tenCuaHang.setAlignment(Element.ALIGN_CENTER);
+//					tenCuaHang.setSpacingAfter(15);
+//					Paragraph title = new Paragraph("TỔNG KẾT CHI NHẬP HÀNG", new Font(bf, 15, Font.BOLD));
+//					title.setAlignment(Element.ALIGN_CENTER);
+//					title.setSpacingAfter(24);
+//                                        Paragraph thoiGian = new Paragraph("Trong tháng: "+ thang+ "/"+ nam, new Font(bf, 14, Font.ITALIC));
+//					thoiGian.setAlignment(Element.ALIGN_CENTER);
+//					doc.add(tenCuaHang);
+//					doc.add(title);
+//                                        doc.add(thoiGian);
+//
+//					try {
+//						int stt = 1;
+//                                                double tongChi = 0;
+//						SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+//
+//						PdfPTable t = new PdfPTable(7);
+//						t.setTotalWidth(500);
+//						t.setLockedWidth(true);
+//						t.setSpacingBefore(25);
+//						t.setSpacingAfter(15);
+//						t.setWidths(new int[] { 30, 150, 30, 100, 100, 30, 100 });
+//                                                
+//						PdfPCell c1 = new PdfPCell(new Phrase("STT", new Font(bf, 14, Font.BOLD)));
+//						c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c1);
+//						PdfPCell c2 = new PdfPCell(new Phrase("Tên Hàng", new Font(bf, 14, Font.BOLD)));
+//						c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c2);
+//						PdfPCell c3 = new PdfPCell(new Phrase("Mã", new Font(bf, 14, Font.BOLD)));
+//						c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c3);
+//						PdfPCell c4 = new PdfPCell(new Phrase("Ngày nhập", new Font(bf, 14, Font.BOLD)));
+//						c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c4);
+//						PdfPCell c5 = new PdfPCell(new Phrase("Giá nhập", new Font(bf, 14, Font.BOLD)));
+//						c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c5);
+//						PdfPCell c6 = new PdfPCell(new Phrase("SL", new Font(bf, 14, Font.BOLD)));
+//						c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c6);
+//                                                PdfPCell c7 = new PdfPCell(new Phrase("Thành tiền", new Font(bf, 14, Font.BOLD)));
+//						c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+//						t.addCell(c7);
+//
+//						for(SanPhamInforChi sp: listSPInforChi) {
+//							t.addCell("" + stt);
+//							t.addCell(new PdfPCell(new Phrase(sp.getTenMatHang(), new Font(bf, 14))));
+//							t.addCell("" + sp.getMaMatHang());
+//							t.addCell(formatter.format(sp.getNgayNhap()));
+//							PdfPCell giaNhap = new PdfPCell(new Phrase(String.format("%,dđ", sp.getGiaNhap()), new Font(bf, 14)));
+//							giaNhap.setHorizontalAlignment(Element.ALIGN_RIGHT);
+//							t.addCell(giaNhap);
+//                                                        t.addCell(""+sp.getSoLuong());
+//							PdfPCell thanhTien = new PdfPCell(new Phrase(String.format("%,dđ", sp.getTongTien()), new Font(bf, 14)));
+//							thanhTien.setHorizontalAlignment(Element.ALIGN_RIGHT);
+//							t.addCell(thanhTien);
+//							stt++;
+//                                                        tongChi += sp.getTongTien();
+//						}
+//						doc.add(t);
+//                                                
+//						Paragraph tC = new Paragraph(String.format("Tổng cộng đã chi: %,.0fđ", tongChi), new Font(bf, 14, Font.BOLD));
+//						tC.setAlignment(Element.ALIGN_RIGHT);
+//						tC.setSpacingAfter(15);
+//                                                
+//						Paragraph chuKy = new Paragraph("NGƯỜI LẬP PHIẾU",new Font(bf, 14, Font.BOLD));
+//						chuKy.setAlignment(Element.ALIGN_RIGHT);
+//						chuKy.setSpacingAfter(90);
+//						doc.add(tC);
+//						doc.add(chuKy);
+//                                                check = true;
+//					} catch (Exception e) {
+//						e.printStackTrace();
+//					} finally {
+//						closeConnection();
+//					}
+//					doc.close();
+//				} catch (IOException ex) {
+//					Logger.getLogger(NhapHangDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+//				} catch (DocumentException e1) {
+//					e1.printStackTrace();
+//				}
+//			} 
+//		}
+//		return check;
+//        }
+        
+        public boolean xuatFileDoanhThu(ArrayList<SanPhamInforChi> listSPInforChi,ArrayList<SanPhamInforThu> listSPInforThu, int thang, int nam){
+            boolean check = false;
+            JFileChooser chooser = new JFileChooser();
+		FileNameExtensionFilter filter = new FileNameExtensionFilter("PDF file (.pdf)", "pdf");
+		chooser.setFileFilter(filter);
+		chooser.setDialogTitle("Chọn vị trí lưu file ");
+		chooser.setMultiSelectionEnabled(false);
+		chooser.setAcceptAllFileFilterUsed(false);
+		if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+			String Location = chooser.getSelectedFile().toString();
+			if (Location.endsWith("pdf")) {
+				try {
+				int stt = 1;
+                                        double tongChi = 0;
+                                        double tongThu = 0;
+                                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                                        
+                                        Document doc = new Document(PageSize.A4, 50, 50, 50, 50);
+					PdfWriter.getInstance(doc, new FileOutputStream(Location));
+					doc.open();
+					BaseFont bf = BaseFont.createFont("arial.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+					Paragraph tenCuaHang = new Paragraph("CỬA HÀNG BÁN GIÀY DÉP TVTV", new Font(bf, 16, Font.BOLD));
+					tenCuaHang.setAlignment(Element.ALIGN_CENTER);
+					tenCuaHang.setSpacingAfter(15);
+					Paragraph title = new Paragraph("TỔNG KẾT TÌNH HÌNH TÀI CHÍNH", new Font(bf, 15, Font.BOLD));
+					title.setAlignment(Element.ALIGN_CENTER);
+                                        Paragraph thoiGian = new Paragraph("Trong tháng: "+ thang+ "/"+ nam, new Font(bf, 14, Font.ITALIC));
+					thoiGian.setAlignment(Element.ALIGN_CENTER);
+                                        thoiGian.setSpacingAfter(24);
+					Paragraph chi = new Paragraph("Chi tiết khoản chi:", new Font(bf, 14, Font.BOLD));
+					chi.setAlignment(Element.ALIGN_LEFT);
+                                        doc.add(tenCuaHang);
+					doc.add(title);
+                                        doc.add(thoiGian);
+                                        doc.add(chi);
+                                        
+                                        PdfPTable t = new PdfPTable(7);
+                                        t.setTotalWidth(500);
+                                        t.setLockedWidth(true);
+                                        t.setSpacingBefore(15);
+                                        t.setSpacingAfter(15);
+                                        t.setWidths(new int[] { 30, 150, 30, 100, 100, 30, 100 });
+
+                                        PdfPCell c1 = new PdfPCell(new Phrase("STT", new Font(bf, 14, Font.BOLD)));
+                                        c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c1);
+                                        PdfPCell c2 = new PdfPCell(new Phrase("Tên Hàng", new Font(bf, 14, Font.BOLD)));
+                                        c2.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c2);
+                                        PdfPCell c3 = new PdfPCell(new Phrase("Mã", new Font(bf, 14, Font.BOLD)));
+                                        c3.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c3);
+                                        PdfPCell c4 = new PdfPCell(new Phrase("Ngày nhập", new Font(bf, 14, Font.BOLD)));
+                                        c4.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c4);
+                                        PdfPCell c5 = new PdfPCell(new Phrase("Giá nhập", new Font(bf, 14, Font.BOLD)));
+                                        c5.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c5);
+                                        PdfPCell c6 = new PdfPCell(new Phrase("SL", new Font(bf, 14, Font.BOLD)));
+                                        c6.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c6);
+                                        PdfPCell c7 = new PdfPCell(new Phrase("Thành tiền", new Font(bf, 14, Font.BOLD)));
+                                        c7.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t.addCell(c7);
+
+                                        for(SanPhamInforChi sp: listSPInforChi) {
+                                                t.addCell("" + stt);
+                                                t.addCell(new PdfPCell(new Phrase(sp.getTenMatHang(), new Font(bf, 14))));
+                                                t.addCell("" + sp.getMaMatHang());
+                                                t.addCell(formatter.format(sp.getNgayNhap()));
+                                                PdfPCell giaNhap = new PdfPCell(new Phrase(String.format("%,dđ", sp.getGiaNhap()), new Font(bf, 14)));
+                                                giaNhap.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                                                t.addCell(giaNhap);
+                                                t.addCell(""+sp.getSoLuong());
+                                                PdfPCell thanhTien = new PdfPCell(new Phrase(String.format("%,dđ", sp.getTongTien()), new Font(bf, 14)));
+                                                thanhTien.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                                                t.addCell(thanhTien);
+                                                stt++;
+                                                tongChi += sp.getTongTien();
+                                        }
+                                        doc.add(t);
+                                        Paragraph tC = new Paragraph(String.format("Tổng cộng đã chi: %,.0fđ", tongChi), new Font(bf, 14, Font.BOLD));
+                                        tC.setAlignment(Element.ALIGN_RIGHT);
+                                        tC.setSpacingAfter(15);
+                                        doc.add(tC);
+                                        
+                                        Paragraph thu = new Paragraph("Chi tiết khoản thu:", new Font(bf, 14, Font.BOLD));
+					thu.setAlignment(Element.ALIGN_LEFT);
+                                        doc.add(thu);
+                                        PdfPTable t2 = new PdfPTable(8);
+                                        t2.setTotalWidth(500);
+                                        t2.setLockedWidth(true);
+                                        t2.setSpacingBefore(15);
+                                        t2.setSpacingAfter(15);
+                                        t2.setWidths(new int[] { 30, 150, 30, 80, 100, 30, 50, 100 });
+
+                                        PdfPCell c1t = new PdfPCell(new Phrase("STT", new Font(bf, 14, Font.BOLD)));
+                                        c1t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c1t);
+                                        PdfPCell c2t = new PdfPCell(new Phrase("Tên Hàng", new Font(bf, 14, Font.BOLD)));
+                                        c2t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c2t);
+                                        PdfPCell c3t = new PdfPCell(new Phrase("Mã", new Font(bf, 14, Font.BOLD)));
+                                        c3t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c3t);
+                                        PdfPCell c4t = new PdfPCell(new Phrase("Ngày Bán", new Font(bf, 14, Font.BOLD)));
+                                        c4t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c4t);
+                                        PdfPCell c5t = new PdfPCell(new Phrase("Giá Bán", new Font(bf, 14, Font.BOLD)));
+                                        c5t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c5t);
+                                        PdfPCell c6t = new PdfPCell(new Phrase("SL", new Font(bf, 14, Font.BOLD)));
+                                        c6t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c6t);
+                                        PdfPCell c7t = new PdfPCell(new Phrase("CK", new Font(bf, 14, Font.BOLD)));
+                                        c7t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c7t);
+                                        PdfPCell c8t = new PdfPCell(new Phrase("Thành Tiền", new Font(bf, 14, Font.BOLD)));
+                                        c8t.setHorizontalAlignment(Element.ALIGN_CENTER);
+                                        t2.addCell(c8t);
+
+                                        for(SanPhamInforThu th: listSPInforThu) {
+                                                t2.addCell("" + stt);
+                                                t2.addCell(new PdfPCell(new Phrase(th.getTenMatHang(), new Font(bf, 14))));
+                                                t2.addCell("" + th.getMaMatHang());
+                                                t2.addCell(formatter.format(th.getNgayBan()));
+                                                PdfPCell giaBan = new PdfPCell(new Phrase(String.format("%,dđ", th.getGiaBan()), new Font(bf, 14)));
+                                                giaBan.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                                                t2.addCell(giaBan);
+                                                t2.addCell(""+th.getSoLuong());
+                                                t2.addCell(""+th.getChietKhau()+"%");
+                                                PdfPCell thanhTien1 = new PdfPCell(new Phrase(String.format("%,dđ", th.getTongTien()), new Font(bf, 14)));
+                                                thanhTien1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+                                                t2.addCell(thanhTien1);
+                                                stt++;
+                                                tongThu += th.getTongTien();
+                                        }
+                                        
+                                        Paragraph tt = new Paragraph(String.format("Tổng cộng đã thu: %,.0fđ", tongThu), new Font(bf, 14, Font.BOLD));
+                                        tt.setAlignment(Element.ALIGN_RIGHT);
+                                        tt.setSpacingAfter(15);
+                                        Paragraph chenhLech = new Paragraph(String.format("Lãi chênh lệch thu - chi: %,.0fđ", tongThu-tongChi), new Font(bf, 14, Font.BOLD));
+                                        chenhLech.setAlignment(Element.ALIGN_RIGHT);
+                                        chenhLech.setSpacingAfter(15);
+                                        
+                                        doc.add(t2);
+                                        doc.add(tt);
+                                        doc.add(chenhLech);
+                                        
+                                        java.util.Date ngayLap = new java.util.Date();
+                                        Paragraph ngay = new Paragraph("Hà Nội, "+formatter.format(ngayLap),new Font(bf, 14, Font.ITALIC));
+                                        ngay.setAlignment(Element.ALIGN_RIGHT);
+                                        Paragraph chuKy = new Paragraph("NGƯỜI LẬP PHIẾU",new Font(bf, 14, Font.BOLD));
+                                        chuKy.setAlignment(Element.ALIGN_RIGHT);
+                                        chuKy.setSpacingAfter(90);
+                                        doc.add(ngay);
+                                        doc.add(chuKy);
+					doc.close();
+                                        check = true;
+				} catch (IOException ex) {
+					Logger.getLogger(NhapHangDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
+				} catch (DocumentException e1) {
+					e1.printStackTrace();
+				}
+			} 
+		}
+		return check;
+        }
 }

@@ -64,4 +64,12 @@ public class ControllerDoanhThu {
 	public int tinhTienMua(ArrayList<Integer> listMaHoaDon) {
 		return giaoDichDaoImpl.tinhTienMua(listMaHoaDon);
 	}
+        
+//        public boolean xuatFileChi(ArrayList<SanPhamInforChi> listSPInforChi, int thang, int nam){
+//            return giaoDichDaoImpl.xuatFileChi(listSPInforChi, thang, nam);
+//        }
+        
+        public boolean xuatFileDoanhThu(ArrayList<SanPhamInforChi> listSPInforChi,ArrayList<SanPhamInforThu> listSPInforThu, int thang, int nam){
+            return giaoDichDaoImpl.xuatFileDoanhThu(listSPInforChi,listSPInforThu, thang, nam);
+        }
 }
