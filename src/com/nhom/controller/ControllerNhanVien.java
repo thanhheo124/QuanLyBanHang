@@ -39,5 +39,8 @@ public class ControllerNhanVien {
 	public int addNhanVien(NhanVien nv2) {
 		return nhanVienDaoImpl.addNhanVien(nv2);
 	}
-
+        
+        public boolean xuatFileNhanVien(ArrayList<NhanVien> listNV, String search){
+            return nhanVienDaoImpl.xuatFileNhanVien(listNV, search);
+        }
 }

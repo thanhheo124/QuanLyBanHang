@@ -329,8 +329,9 @@ public class NhanVienPanel extends JPanel implements ICommon, ActionListener {
 			loadTableNhanVien("", 0);
 			break;
 		case ACTION_XUATFILE:
-			int anhVinh = 0;
-			// anh Xuất File chỗ này nhé!!
+                        if(controllerNhanVien.xuatFileNhanVien(listNV, searchField.getText())){
+                            JOptionPane.showMessageDialog(null, "Đã xuất file!" , "Thông báo", 1);
+                        }else JOptionPane.showMessageDialog(null, "Chưa xuất file!" , "Thông báo", 2);
 			break;
 		default:
 			break;
