@@ -296,6 +296,6 @@ public class NhanVienDaoImpl extends ConectDataBase {
                             }
                     } 
             }
-            return true;
+            return check;
         }
 }

@@ -259,6 +259,7 @@ public class DoanhThuTabbed extends JPanel implements ICommon, ActionListener {
                         ArrayList<SanPhamInforChi> listSPInforChi = controllerDoanhThu.getListSPChi(listPhieuNhap);
                         ArrayList<Integer> listMaHoaDon = controllerDoanhThu.getListMaHoaDon(dateTimKiem);
                         ArrayList<SanPhamInforThu> listSPInforThu = controllerDoanhThu.getListSPBan(listMaHoaDon);
+                        
                         if(controllerDoanhThu.xuatFileDoanhThu(listSPInforChi,listSPInforThu, thang, year)){
                             JOptionPane.showMessageDialog(null, "Đã xuất file!" , "Thông báo", 1);
                         }else JOptionPane.showMessageDialog(null, "Chưa xuất file!" , "Thông báo", 2);

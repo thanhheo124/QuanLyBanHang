@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.nhom.database.GiaoDichDaoImpl;
 import com.nhom.database.SanPhamDaoImpl;
 import com.nhom.models.SanPham;
+import java.io.IOException;
 
 /**
  * @author Mr Thanh Dec 9, 2017
@@ -89,4 +90,12 @@ public class ControllerSanPham {
 	public void suaSanPham(SanPham sp) {
 		sanPhamDaoImpl.suaSanPham(sp);
 	}
+        
+        public ArrayList<SanPham> nhapSanPhamTuExcel(String excelFilePath) throws IOException{
+            return sanPhamDaoImpl.nhapSanPhamTuExcel(excelFilePath);
+        }
+        
+        public int xuatBaoGia(ArrayList<SanPham> listSP, String tenKH){
+            return sanPhamDaoImpl.xuatBaoGia(listSP, tenKH);
+        }
 }

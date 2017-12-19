@@ -407,7 +407,7 @@ public class GiaoDichDaoImpl extends ConectDataBase {
 					Paragraph soHoaDon = new Paragraph("Hóa đơn số: " + maHoaDon, new Font(bf, 14, Font.ITALIC));
 					soHoaDon.setAlignment(Element.ALIGN_RIGHT);
 					// tenCuaHang.setSpacingAfter(15);
-					Paragraph tenCuaHang = new Paragraph("CỬA HÀNG BÁN GIÀY DÉP", new Font(bf, 16, Font.BOLD));
+					Paragraph tenCuaHang = new Paragraph("CỬA HÀNG BÁN GIÀY DÉP TVTV", new Font(bf, 16, Font.BOLD));
 					tenCuaHang.setAlignment(Element.ALIGN_CENTER);
 					tenCuaHang.setSpacingAfter(15);
 					Paragraph title = new Paragraph("HÓA ĐƠN BÁN HÀNG", new Font(bf, 15, Font.BOLD));

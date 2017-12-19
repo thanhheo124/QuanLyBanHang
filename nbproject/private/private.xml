@@ -3,9 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/controller/ControllerDoanhThu.java</file>
-            <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/database/GiaoDichDaoImpl.java</file>
+            <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/database/NhanVienDaoImpl.java</file>
+            <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/giaodien/trangchu/nhanvien/NhanVienPanel.java</file>
             <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/giaodien/trangchu/doanhthu/DoanhThuTabbed.java</file>
+            <file>file:/D:/hochanh/class/project%201/Nhom/new/QuanLyBanHang/src/com/nhom/controller/ControllerNhanVien.java</file>
         </group>
     </open-files>
 </project-private>

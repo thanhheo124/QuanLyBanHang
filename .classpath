@@ -44,5 +44,8 @@
 	<classpathentry kind="lib" path="F:/Apache Tomcat 8.0/lib/jfreechart-1.0.19/lib/servlet.jar"/>
 	<classpathentry kind="lib" path="F:/Apache Tomcat 8.0/lib/jfreechart-1.0.19/lib/swtgraphics2d.jar"/>
 	<classpathentry kind="lib" path="xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/hochanh/class/project 1/Nhom/new/QuanLyBanHang/poi-3.17.jar"/>
+	<classpathentry kind="lib" path="D:/hochanh/class/project 1/Nhom/new/QuanLyBanHang/poi-ooxml-3.17.jar"/>
+	<classpathentry kind="lib" path="D:/hochanh/class/project 1/Nhom/new/QuanLyBanHang/poi-ooxml-schemas-3.17.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

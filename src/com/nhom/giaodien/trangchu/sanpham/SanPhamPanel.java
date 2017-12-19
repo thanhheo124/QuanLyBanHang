@@ -21,9 +21,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class SanPhamPanel extends JPanel implements ICommon, ActionListener {
 	/**
@@ -321,13 +328,33 @@ public class SanPhamPanel extends JPanel implements ICommon, ActionListener {
 			loadTableSanPham();
 			break;
 		case ACTION_THEMTUFILE :
-			int anhVinh = 0;
-			// Anh thêm từ file chỗ này cho em nhé!!
+			JFileChooser fileChooser= new JFileChooser();
+                        FileFilter filter = new FileNameExtensionFilter("Excel file", "xls", "xlsx");
+                        fileChooser.setFileFilter(filter);
+                        fileChooser.setMultiSelectionEnabled(false);
+                        int actionOpen = fileChooser.showOpenDialog(this);
+                        if(actionOpen == JFileChooser.APPROVE_OPTION){
+                            String excelpath= fileChooser.getSelectedFile().getAbsolutePath();
+                            ArrayList<SanPham> listSanPham;
+                            try {
+                                listSanPham = controllerSanPham.nhapSanPhamTuExcel(excelpath); 
+                                //chú thành thực hiện lưu listSP vào DB nhé.                               
+                            } catch (IOException ex) {
+                                Logger.getLogger(SanPhamPanel.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
 			break;
 		case ACTION_XUATBAOGIA : 
 			String tenKH = textTenKH.getText();
-			int anhVin2 = 0;
-			// Anh xuất báo giá cho thằng Tên KH mà e getText ra nhé!
+                        if (controllerSanPham.xuatBaoGia(listSP, tenKH) == 2) {
+                                JOptionPane.showMessageDialog(null, "Xuất file thành công");
+                        } else if (controllerSanPham.xuatBaoGia(listSP, tenKH) == 1) {
+                                JOptionPane.showMessageDialog(null, "Tên file phải kết thúc là .pdf", "Lỗi Xuất File",
+                                                JOptionPane.ERROR_MESSAGE);
+                        } else {
+                                JOptionPane.showMessageDialog(null, "Chương trình gặp lỗi xuất file", "Lỗi Xuất File",
+                                                JOptionPane.ERROR_MESSAGE);
+                        }
 		default:
 			break;
 		}
